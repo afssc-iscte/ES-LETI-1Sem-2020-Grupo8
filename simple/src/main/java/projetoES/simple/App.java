@@ -1,41 +1,46 @@
 package projetoES.simple;
 
-import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
-import java.io.File;
-import java.io.IOException;
-import java.util.Iterator;
+import java.io.*;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-	
-	private static final String ExcelPath = new String("C:\\Users\\costa\\Downloads\\Defeitos.xlsx");
-	
-    public static void main( String[] args ) throws InvalidFormatException, IOException {
-    	
-    	Workbook workbook = WorkbookFactory.create(new File(ExcelPath));
-        System.out.println( "Hello World!" );
+public class App {
+	private int rowNum;
+	private int columnNum;
+	private Workbook workbook;
+	private DataFormatter dataFormatter;
     
-        System.out.println("Retrieving Sheets using for-each loop");
-        for(Sheet sheet: workbook) {
-            System.out.println("=> " + sheet.getSheetName());
-        }
-        
+	public void readFile (String ExcelPath) throws InvalidFormatException, IOException {
+    	workbook = WorkbookFactory.create(new File(ExcelPath));
         Sheet sheet = workbook.getSheetAt(0);
-        DataFormatter dataFormatter = new DataFormatter();
+        dataFormatter = new DataFormatter();
+        Row row = sheet.getRow(0);
         
-        System.out.println("\n\nIterating over Rows and Columns using for-each loop\n");
-        for (Row row: sheet) {
-            for(Cell cell: row) {
-                String cellValue = dataFormatter.formatCellValue(cell);
-                System.out.print(cellValue + "\t");
-            }
-            System.out.println();
-        }
+        rowNum = sheet.getLastRowNum();
+        columnNum = row.getLastCellNum();
+     
+//        for (Row row: sheet) {
+//            for(Cell cell: row) {
+//                String cellValue = dataFormatter.formatCellValue(cell);
+//                System.out.print(cellValue + "\t");
+//            }
+//            System.out.println();
+//        }
+    }
+    
+    public int rowNum() {
+    	return this.rowNum;
+    }
+    
+    public int columnNum() {
+    	return this.columnNum;
+    }
+    
+    public String get(int i, int j) {
+    	Sheet aux = workbook.getSheetAt(0);
+    	Row aux1 = aux.getRow(i);
+    	Cell cell = aux1.getCell(j);
+    	String cellValue = dataFormatter.formatCellValue(cell);
+    	return cellValue;
     }
 }
