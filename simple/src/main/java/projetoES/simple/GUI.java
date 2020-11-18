@@ -5,9 +5,12 @@ import javax.swing.JFrame;
 import java.awt.*;
 import javax.swing.*;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+<<<<<<< HEAD
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
+=======
+>>>>>>> f8e7e59e064ae0e2565e1c63b771c39b41968c95
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import java.awt.event.ActionListener;
@@ -23,7 +26,10 @@ public class GUI {
 	private JButton btnFile;
 	private JButton btnInsert;
 	private JButton btnClear;
+<<<<<<< HEAD
 	private JButton btnSearch;
+=======
+>>>>>>> f8e7e59e064ae0e2565e1c63b771c39b41968c95
 	private JTextField textField1;
 	private JTextField textField2;
 	private JComboBox<Object> comboBox;
@@ -53,8 +59,11 @@ public class GUI {
 		});
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f8e7e59e064ae0e2565e1c63b771c39b41968c95
 	public GUI() throws InvalidFormatException, IOException {
 		initialize();
 	}
@@ -100,7 +109,10 @@ public class GUI {
 		comboBox2 = new JComboBox<Object>(andor);
 		comboBox2.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 		comboBox2.setBounds(293, 70, 56, 21);
+<<<<<<< HEAD
 		comboBox2.setEditable(true);
+=======
+>>>>>>> f8e7e59e064ae0e2565e1c63b771c39b41968c95
 		frame.getContentPane().add(comboBox2);
 
 		btnInsert = new JButton("Insert");
@@ -113,11 +125,14 @@ public class GUI {
 		btnClear.setBounds(412, 95, 85, 32);
 		frame.getContentPane().add(btnClear);
 
+<<<<<<< HEAD
 		btnSearch = new JButton("Search");
 		btnSearch.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 		btnSearch.setBounds(412, 130, 85, 32);
 		frame.getContentPane().add(btnSearch);
 
+=======
+>>>>>>> f8e7e59e064ae0e2565e1c63b771c39b41968c95
 		textPane = new JTextPane();
 		textPane.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 		textPane.setBounds(52, 101, 304, 26);
@@ -125,7 +140,10 @@ public class GUI {
 
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f8e7e59e064ae0e2565e1c63b771c39b41968c95
 	private void createEvents() throws InvalidFormatException, IOException {
 		btnFile.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btnFile.addActionListener(new ActionListener() {
@@ -151,10 +169,17 @@ public class GUI {
 							}
 						}
 						excel = new JTable (rowData, columnNames);
+<<<<<<< HEAD
 						excel.setFillsViewportHeight(true);
 						scrollPane = new JScrollPane(excel);
 						scrollPane.setBounds(40, 200, 500, 200 );
 						frame.add(scrollPane);
+=======
+		        		excel.setFillsViewportHeight(true);
+						scrollPane = new JScrollPane(excel);
+		                scrollPane.setBounds(40, 200, 500, 200 );
+		                frame.add(scrollPane);
+>>>>>>> f8e7e59e064ae0e2565e1c63b771c39b41968c95
 					} catch (InvalidFormatException | IOException e1) {
 						System.out.println("Something went wrong...");
 					}
@@ -175,6 +200,7 @@ public class GUI {
 					textPane.setText(textPane.getText()+" "+selected2);
 					textPane.setText(textPane.getText()+" "+selected3);
 				}		
+<<<<<<< HEAD
 
 			}	
 		});
@@ -299,3 +325,15 @@ public class GUI {
 				}
 			}));
 		}
+=======
+			}	
+		});
+
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textPane.setText("");
+			}
+		});
+	}
+}
+>>>>>>> f8e7e59e064ae0e2565e1c63b771c39b41968c95
