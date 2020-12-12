@@ -1,11 +1,14 @@
 # ES-LETI-1Sem-2020-Grupo8
-### André Costa 87378
-### Diana Pernas 87293
-### Ana Vieira 87855
+#### André Costa 87378
+#### Diana Pernas 87293
+#### Ana Vieira 87855
 
 
-# Trello
+
+## Trello
 https://trello.com/b/QLTIf80b/projeto
+
+
 
 ## Maven
 
@@ -28,7 +31,7 @@ https://trello.com/b/QLTIf80b/projeto
 ```
 
 ```xml
-<dependency>
+		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-suite-api</artifactId>
 			<version>1.7.0</version>
@@ -37,7 +40,7 @@ https://trello.com/b/QLTIf80b/projeto
 ```
 
 ```xml
-<dependency>
+		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-runner</artifactId>
 			<version>1.7.0</version>
