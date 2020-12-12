@@ -27,4 +27,29 @@ public class Metric {
 		this.symbol=symbol;
 		this.value=value;
 	}
+
+	public String compare(String value) {
+		Double aux = Double.parseDouble(value);
+		switch (getSymbol()) {
+		case "<":
+			if (aux < getValue()) {
+				return "TRUE";
+			} else {
+				return "FALSE";
+			}
+		case ">":
+			if (aux > getValue()) {
+				return "TRUE";
+			} else {
+				return "FALSE";
+			}
+		case "=":
+			if (aux == getValue()) {
+				return "TRUE";
+			} else {
+				return "FALSE";
+			}
+		}
+		return "FALSE";
+	}
 }

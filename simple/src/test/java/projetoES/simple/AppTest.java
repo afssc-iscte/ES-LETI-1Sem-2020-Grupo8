@@ -1,5 +1,9 @@
 package projetoES.simple;
 
+import java.io.IOException;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -34,5 +38,11 @@ public class AppTest
     public void testApp()
     {
         assertTrue( true );
+    }
+    
+    
+    public void testRead() throws InvalidFormatException, IOException {
+    	App app = new App();
+    	app.readFile("C:\\Users\\costa\\Downloads\\Defeitos.xlsx");
     }
 }

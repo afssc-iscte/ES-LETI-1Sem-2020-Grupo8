@@ -14,6 +14,7 @@ public class GUI {
 	private JButton btnFile;
 	private JButton btnInsert;
 	private JButton btnSearch;
+	private JButton btnQuality;
 	private JTextField textField1;
 	private JTextField textField2;
 	private JComboBox<Object> comboBox;
@@ -23,7 +24,11 @@ public class GUI {
 	private String selected2;
 	private JTextPane textPane ;
 	private JScrollPane scrollPane;
+	private JScrollPane scrollPane1;
 	private JTable excel;
+	private JTable def;
+	private Defeitos defeitos;
+
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -46,24 +51,14 @@ public class GUI {
 		initComponents();
 		createEvents();
 	}
-	
+
 	private void update() {
 		frame.remove(scrollPane);
-		String[][] rowData = new String[app.rowNum()][app.columnNum()];
-		String[] columnNames = new String[app.columnNum()];
-		for (int row=0 ; row<app.rowNum()+1 ; row++) {
-			for (int column=0 ; column<app.columnNum(); column++) {
-				String cell = app.get(row, column);
-				if (row == 0)
-					columnNames[column] = cell;
-				else
-					rowData[row - 1][column] = cell;
-			}
-		}
-		excel = new JTable (rowData, columnNames);
+		app.newData();
+		excel = new JTable (app.getRowData(), app.getColumnNames());
 		excel.setFillsViewportHeight(true);
 		scrollPane = new JScrollPane(excel);
-		scrollPane.setBounds(40, 200, 500, 200 );
+		scrollPane.setBounds(40, 250, 500, 200 );
 		frame.add(scrollPane);
 	}
 
@@ -71,7 +66,7 @@ public class GUI {
 		app = new App();
 		frame = new JFrame();
 		frame.setTitle("Projeto");
-		frame.setBounds(100, 100, 570, 423);
+		frame.setBounds(100, 100, 570, 523);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -112,6 +107,11 @@ public class GUI {
 		btnSearch.setBounds(412, 95, 85, 32);
 		frame.getContentPane().add(btnSearch);
 
+		btnQuality= new JButton("Indicadores de Qualidade");
+		btnQuality.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		btnQuality.setBounds(412, 130, 85, 32);
+		frame.getContentPane().add(btnQuality);
+
 		textPane = new JTextPane();
 		textPane.setFont(new Font("Century Gothic", Font.PLAIN, 10));
 		textPane.setBounds(52, 101, 304, 26);
@@ -133,22 +133,13 @@ public class GUI {
 					textField1.setText(selectedFile.getAbsolutePath ());
 					try {
 						app.readFile(textField1.getText());
-						String[][] rowData = new String[app.rowNum()][app.columnNum()];
-						String[] columnNames = new String[app.columnNum()];
-						for (int row=0 ; row<app.rowNum()+1 ; row++) {
-							for (int column=0 ; column<app.columnNum(); column++) {
-								String cell = app.get(row, column);
-								if (row == 0)
-									columnNames[column] = cell;
-								else
-									rowData[row - 1][column] = cell;
-							}
-						}
-						excel = new JTable (rowData, columnNames);
+						app.newData();
+						excel = new JTable (app.getRowData(), app.getColumnNames());
 						excel.setFillsViewportHeight(true);
 						scrollPane = new JScrollPane(excel);
-						scrollPane.setBounds(40, 200, 500, 200 );
+						scrollPane.setBounds(40, 250, 500, 200 );
 						frame.add(scrollPane);
+
 					} catch (InvalidFormatException | IOException e1) {
 						System.out.println("Something went wrong...");
 					}
@@ -196,5 +187,18 @@ public class GUI {
 						a.printStackTrace();
 					}
 				}}});
+
+
+		btnQuality.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				app.newData();
+				defeitos = new Defeitos(app.getRowData());
+				def = new JTable (defeitos.detecaoDefeitos(), defeitos.getHeader());
+				def.setFillsViewportHeight(true);
+				scrollPane1 = new JScrollPane(def);
+				scrollPane1.setBounds(40, 150, 300, 85 );
+				frame.add(scrollPane1);
+			}
+		});
 	}
 }

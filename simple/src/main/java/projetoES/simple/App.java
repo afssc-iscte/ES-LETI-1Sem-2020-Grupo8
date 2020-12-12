@@ -33,6 +33,19 @@ public class App {
 		ATFD = new Metric("ATFD",">",4);
 		LAA = new Metric("LAA","<",  0.428571);
 	}
+	
+	
+	public void newData() {
+		for (int row1=0 ; row1<rowNum+1 ; row1++) {
+			for (int column=0 ; column<columnNum; column++) {
+				String cell = get(row1, column);
+				if (row1 == 0)
+					columnNames[column] = cell;
+				else
+					rowData[row1 - 1][column] = cell;
+			}
+		}
+	}
 
 
 	public void escreveVF (Metric m, int row) {
@@ -106,7 +119,7 @@ public class App {
 				}
 			} 
 			if(longMethod.equals("FALSE")) {
-				if(bool.equals("TRUE") && compare(value, CYCLO).equals("TRUE")) {
+				if(bool.equals("TRUE") && CYCLO.compare(value).equals("TRUE")) {
 					Cell longCell = workbook.getSheetAt(0).getRow(row).getCell(searchCell("is_long_method"));
 					longCell.setCellValue("TRUE");
 				}
@@ -122,7 +135,7 @@ public class App {
 				}
 			} 
 			if(longMethod.equals("FALSE")) {
-				if(bool.equals("TRUE") && compare(value, LOC).equals("TRUE")) {
+				if(bool.equals("TRUE") && LOC.compare(value).equals("TRUE")) {
 					Cell longCell = workbook.getSheetAt(0).getRow(row).getCell(searchCell("is_long_method"));
 					longCell.setCellValue("TRUE");
 				}
@@ -138,7 +151,7 @@ public class App {
 				}
 			} 
 			if(longMethod.equals("FALSE")) {
-				if(bool.equals("TRUE") && compare(value, LAA).equals("TRUE")) {
+				if(bool.equals("TRUE") && LAA.compare(value).equals("TRUE")) {
 					Cell longCell = workbook.getSheetAt(0).getRow(row).getCell(searchCell("is_feature_envy"));
 					longCell.setCellValue("TRUE");
 				}
@@ -154,7 +167,7 @@ public class App {
 				}
 			} 
 			if(longMethod.equals("FALSE")) {
-				if(bool.equals("TRUE") && compare(value, ATFD).equals("TRUE")) {
+				if(bool.equals("TRUE") && ATFD.compare(value).equals("TRUE")) {
 					Cell longCell = workbook.getSheetAt(0).getRow(row).getCell(searchCell("is_feature_envy"));
 					longCell.setCellValue("TRUE");
 				}
@@ -170,31 +183,6 @@ public class App {
 			}
 		}
 		return -1;
-	}
-
-	public String compare(String value, Metric m) {
-		Double aux = Double.parseDouble(value);
-		switch (m.getSymbol()){
-		case "<":
-			if(aux<m.getValue()) {
-				return "TRUE";
-			} else {
-				return "FALSE";
-			}
-		case ">":
-			if(aux>m.getValue()) {
-				return "TRUE";
-			} else {
-				return "FALSE";
-			}
-		case "=":
-			if(aux==m.getValue()) {
-				return "TRUE";
-			} else {
-				return "FALSE";
-			}
-		}
-		return "FALSE";
 	}
 
 	public String[] getColumnNames() {
