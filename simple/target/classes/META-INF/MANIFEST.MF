@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: diana
-Build-Jdk: 14
-=======
 Built-By: costa
 Build-Jdk: 11.0.2
->>>>>>> 1affeac8c06a6aa94eebd906c18cdbd205513afc
 Created-By: Maven Integration for Eclipse
 

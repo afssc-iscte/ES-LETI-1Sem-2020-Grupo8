@@ -1,5 +1,0 @@
--Importar o ficheiro excel para a gui do projeto
--Alterar os valores das thresholds
--Alterar a tabela com sucesso
--Criar tabela com defeitos
--Tabela com defeitos atualiza com sucesso

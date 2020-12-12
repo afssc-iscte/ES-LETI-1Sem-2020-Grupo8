@@ -16,6 +16,10 @@ public class App {
 	private Metric ATFD;
 	private Metric LAA;
 
+	/**
+	 * Read an excel file and keep his data
+	 * @param ExcelPath ExcelFile to read
+	 */
 	public void readFile (String ExcelPath) throws InvalidFormatException, IOException {
 		workbook = WorkbookFactory.create(new File(ExcelPath));
 		Sheet sheet = workbook.getSheetAt(0);
@@ -35,6 +39,9 @@ public class App {
 	}
 	
 	
+	/**
+	 * Save new updated data
+	 */
 	public void newData() {
 		for (int row1=0 ; row1<rowNum+1 ; row1++) {
 			for (int column=0 ; column<columnNum; column++) {
@@ -48,6 +55,12 @@ public class App {
 	}
 
 
+	
+	/**Receives a metric and a row. Saves the metric and invokes the function search().
+	 * 
+	 * @param m Metric to search
+	 * @param row Row to search
+	 */
 	public void escreveVF (Metric m, int row) {
 		//Load Column Names
 		for (int column=0 ; column < columnNum(); column++) {
@@ -79,6 +92,11 @@ public class App {
 	}
 
 
+	/**Receives a metric and a row. Invokes the function change() and writes "TRUE" or 
+	 * "FALSE" according to the metric given.
+	 * @param m Metric to update
+	 * @param row Given row to search
+	 */
 	public void search(Metric m ,int row) {
 		int i = searchCell(m.getName());
 		double a = Double.parseDouble(this.get(row, i));
@@ -105,6 +123,13 @@ public class App {
 		}
 	}
 
+	/**
+	 * Changes the value of "is_long_method" or "is_feature_envy" according to name of the metric and
+	 * boolean value given. Only changes a specific row. 
+	 * @param m Metric to change
+	 * @param row Row to update
+	 * @param bool New boolean value for the cell
+	 */
 	public void change(Metric m, int row, String bool) {
 		String value;
 		String longMethod;
@@ -176,6 +201,11 @@ public class App {
 		}
 	}
 
+	/**
+	 * Searches the index of a given cell name
+	 * @param cellName Name of the column to search
+	 * @return Index of the column
+	 */
 	public int searchCell(String cellName) {
 		for (int i=0 ; i < columnNum ; i++) {
 			if(columnNames[i].equals(cellName)) {
@@ -209,6 +239,12 @@ public class App {
 		return this.workbook;
 	}
 
+	/**
+	 * Return a String with the value of a specific cell
+	 * @param i Row of the cell
+	 * @param j Column of the cell
+	 * @return String with the cell value
+	 */
 	public String get(int i, int j) {
 		Sheet aux = workbook.getSheetAt(0);
 		Row aux1 = aux.getRow(i);

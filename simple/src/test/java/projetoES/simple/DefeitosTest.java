@@ -15,7 +15,7 @@ public class DefeitosTest {
 	@Test
 	public void testDef() throws InvalidFormatException, IOException {
     	app = new App();
-    	app.readFile("C:\\Users\\diana\\Desktop\\Defeitos.xlsx");
+    	app.readFile("C:\\Users\\costa\\Downloads\\Defeitos.xlsx");
 		app.newData();
 		def = new Defeitos (app.getRowData());
 		String [][] s = def.detecaoDefeitos();

@@ -16,6 +16,9 @@ public class Defeitos {
 		this.dadosExcel=dadosExcel;
 	}
 
+	/**Reads all given data and adds values to DCI, DII, ADCI, ADII according to specific conditions 
+	 * @return String [][] with all saved values
+	 */
 	public String[][] detecaoDefeitos() {
 		for(int i=0; i< dadosExcel.length; i++) {
 			if((dadosExcel[i][8].equals("TRUE")) &&

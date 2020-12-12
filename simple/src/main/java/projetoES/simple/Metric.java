@@ -28,6 +28,11 @@ public class Metric {
 		this.value=value;
 	}
 
+	
+	/**Compares a new value with the saved metric.
+	 * @param value Value to compare
+	 * @return String holding a boolean value
+	 */
 	public String compare(String value) {
 		Double aux = Double.parseDouble(value);
 		switch (getSymbol()) {

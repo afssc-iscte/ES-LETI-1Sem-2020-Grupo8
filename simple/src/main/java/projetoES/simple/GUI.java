@@ -30,6 +30,9 @@ public class GUI {
 	private Defeitos defeitos;
 
 
+	/**
+	 * Main - runs the project's interface
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -52,6 +55,9 @@ public class GUI {
 		createEvents();
 	}
 
+	/**
+	 * Updates the table with changed values
+	 */
 	private void update() {
 		frame.remove(scrollPane);
 		app.newData();
@@ -62,6 +68,9 @@ public class GUI {
 		frame.add(scrollPane);
 	}
 
+	/**
+	 * Creates all interface's components from default
+	 */
 	private void initComponents() {
 		app = new App();
 		frame = new JFrame();
@@ -119,7 +128,9 @@ public class GUI {
 
 	}
 
-
+	/**
+	 * Creates events for all of the buttons when pressed
+	 */
 	private void createEvents() throws InvalidFormatException, IOException {
 		btnFile.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btnFile.addActionListener(new ActionListener() {
